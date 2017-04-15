@@ -1,30 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var MatchController = require('../controllers/MatchController.js');
+var MatchApiController = require('../controllers/MatchApiController.js');
 
-/*
- * GET
- */
-router.get('/', MatchController.list);
-
-/*
- * GET
- */
-router.get('/:id', MatchController.show);
-
-/*
- * POST
- */
-router.post('/', MatchController.create);
-
-/*
- * PUT
- */
-router.put('/:id', MatchController.update);
-
-/*
- * DELETE
- */
-router.delete('/:id', MatchController.remove);
+router.get('/', MatchApiController.list);
+router.get('/:id', MatchApiController.show);
+router.post('/', MatchApiController.create);
+router.put('/:id', MatchApiController.update);
+router.delete('/:id', MatchApiController.remove);
 
 module.exports = router;

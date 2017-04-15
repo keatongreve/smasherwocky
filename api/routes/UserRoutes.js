@@ -1,30 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var UserController = require('../controllers/UserController.js');
+var UserApiController = require('../controllers/UserApiController.js');
 
-/*
- * GET
- */
-router.get('/', UserController.list);
-
-/*
- * GET
- */
-router.get('/:id', UserController.show);
-
-/*
- * POST
- */
-router.post('/', UserController.create);
-
-/*
- * PUT
- */
-router.put('/:id', UserController.update);
-
-/*
- * DELETE
- */
-router.delete('/:id', UserController.remove);
+router.get('/', UserApiController.list);
+router.get('/:id', UserApiController.show);
+router.post('/', UserApiController.create);
+router.put('/:id', UserApiController.update);
+router.delete('/:id', UserApiController.remove);
 
 module.exports = router;

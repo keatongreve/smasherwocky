@@ -1,4 +1,4 @@
-var MatchModel = require('../models/MatchModel.js');
+var Match = require('../models/Match.js');
 
 /**
  * MatchController.js
@@ -11,7 +11,7 @@ module.exports = {
    * MatchController.list()
    */
   list: function(req, res) {
-    MatchModel.find()
+    Match.find()
       .populate("player1")
       .populate("player2")
       .populate("winner")
@@ -31,7 +31,7 @@ module.exports = {
    */
   show: function(req, res) {
     var id = req.params.id;
-    MatchModel.findOne({
+    Match.findOne({
       _id: id
     }, function(err, Match) {
       if (err) {
@@ -53,7 +53,7 @@ module.exports = {
    * MatchController.create()
    */
   create: function(req, res) {
-    var Match = new MatchModel({
+    var Match = new Match({
       player1: req.body.player1,
       player2: req.body.player2,
       player1Character: req.body.player1Character,
@@ -80,7 +80,7 @@ module.exports = {
    */
   update: function(req, res) {
     var id = req.params.id;
-    MatchModel.findOne({
+    Match.findOne({
       _id: id
     }, function(err, Match) {
       if (err) {
@@ -125,7 +125,7 @@ module.exports = {
    */
   remove: function(req, res) {
     var id = req.params.id;
-    MatchModel.findByIdAndRemove(id, function(err, Match) {
+    Match.findByIdAndRemove(id, function(err, Match) {
       if (err) {
         return res.status(500).json({
           message: 'Error when deleting the Match.',

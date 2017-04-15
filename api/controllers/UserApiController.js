@@ -1,4 +1,4 @@
-var UserModel = require('../models/UserModel.js');
+var User = require('../models/User.js');
 
 /**
  * UserController.js
@@ -11,7 +11,7 @@ module.exports = {
    * UserController.list()
    */
   list: function(req, res) {
-    UserModel.find(function(err, Users) {
+    User.find(function(err, Users) {
       if (err) {
         return res.status(500).json({
           message: 'Error when getting User.',
@@ -27,7 +27,7 @@ module.exports = {
    */
   show: function(req, res) {
     var id = req.params.id;
-    UserModel.findOne({
+    User.findOne({
       _id: id
     }, function(err, User) {
       if (err) {
@@ -49,7 +49,7 @@ module.exports = {
    * UserController.create()
    */
   create: function(req, res) {
-    var User = new UserModel({
+    var User = new User({
       name: req.body.name
     });
 
@@ -69,7 +69,7 @@ module.exports = {
    */
   update: function(req, res) {
     var id = req.params.id;
-    UserModel.findOne({
+    User.findOne({
       _id: id
     }, function(err, User) {
       if (err) {
@@ -104,7 +104,7 @@ module.exports = {
    */
   remove: function(req, res) {
     var id = req.params.id;
-    UserModel.findByIdAndRemove(id, function(err, User) {
+    User.findByIdAndRemove(id, function(err, User) {
       if (err) {
         return res.status(500).json({
           message: 'Error when deleting the User.',
