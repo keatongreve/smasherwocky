@@ -1,14 +1,22 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
+var User = require('./components/User')
 
-class HelloMessage extends React.Component {
+class Index extends React.Component {
+
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
+        <div id="users">
+          {this.props.users.map(function(user) {
+            return <User
+              key={user._id}
+              user={user} />
+          })}
+        </div>
       </DefaultLayout>
     );
   }
 }
 
-module.exports = HelloMessage;
+module.exports = Index;

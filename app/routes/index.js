@@ -1,5 +1,5 @@
-exports.index = function(req, res) {
-  res.render('index', {
-    name: 'John'
-  });
+var UserController = require('../controllers/UserController')
+
+module.exports = {
+  index: UserController.list
 };
