@@ -11,15 +11,19 @@ module.exports = {
    * MatchController.list()
    */
   list: function(req, res) {
-    MatchModel.find(function(err, Matchs) {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when getting Match.',
-          error: err
-        });
-      }
-      return res.json(Matchs);
-    });
+    MatchModel.find()
+      .populate("player1")
+      .populate("player2")
+      .populate("winner")
+      .exec(function(err, Matchs) {
+        if (err) {
+          return res.status(500).json({
+            message: 'Error when getting Match.',
+            error: err
+          });
+        }
+        return res.json(Matchs);
+      });
   },
 
   /**
@@ -57,7 +61,7 @@ module.exports = {
       player1EndStocks: req.body.player1EndStocks,
       player2EndStocks: req.body.player2EndStocks,
       winner: req.body.winner,
-      date: req.body.date
+      date: req.body.date || new Date()
     });
 
     Match.save(function(err, Match) {
